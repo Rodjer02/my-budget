@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../../context/AppContext";
 export default function Remaining() {
   const { expenses, budget } = useContext(AppContext);
 
@@ -11,7 +11,7 @@ export default function Remaining() {
 
   return (
     <div className={`alert ${alertType}`}>
-      <span>Remaining: {budget - totalExpenses}tg</span>
+      <span>Remaining: {budget - totalExpenses} KZT</span>
     </div>
   );
 }

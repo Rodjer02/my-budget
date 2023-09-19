@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { TiDelete } from "react-icons/ti";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../../context/AppContext";
 
 export default function ExpenseItem(props) {
   const { dispatch } = useContext(AppContext);
@@ -24,7 +24,7 @@ export default function ExpenseItem(props) {
             padding: "5px 10px",
           }}
         >
-          {props.cost} tg
+          {props.cost} KZT
         </span>
         <TiDelete size="1.5em" onClick={handleDeleteExpense}></TiDelete>
       </div>

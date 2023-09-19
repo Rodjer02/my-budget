@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../../context/AppContext";
 import {
   Button,
   NumberInput,
@@ -32,7 +32,7 @@ const Budget = () => {
     <div className="alert alert-secondary">
       {isEditing ? (
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <span>Budget: {budget}tg</span>
+          <span>Budget: {budget} KZT</span>
           <Button colorScheme="blue" size="sm" onClick={editBudget}>
             Edit
           </Button>
@@ -50,18 +50,8 @@ const Budget = () => {
             type="number"
             value={budgetValue}
             onChange={(event) => setBudgetValue(event.target.value)}
+            style={{ padding: "10px", borderRadius: "5px" }}
           />
-          {/* <NumberInput
-            size="xs"
-            value={budgetValue}
-            onChange={(event) => setBudgetValue(event.target.value)}
-          >
-            <NumberInputField style={{ background: "#fff" }} />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput> */}
           <Button colorScheme="blue" size="sm" onClick={updateBudget}>
             Update
           </Button>
