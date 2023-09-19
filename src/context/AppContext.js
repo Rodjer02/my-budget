@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 
-const AppReducer = (state, action) => {
+const AppReducer = (state, action, value) => {
   switch (action.type) {
     case "ADD_EXPENSE":
       return {
@@ -13,17 +13,41 @@ const AppReducer = (state, action) => {
         expenses: state.expenses.filter(
           (expense) => expense.id !== action.payload
         ),
+        searchList: state.expenses
+          .filter((expense) => expense.id !== action.payload)
+          .filter(
+            (expense) =>
+              expense.name.toLowerCase().indexOf(action.value.toLowerCase()) !=
+                -1 ||
+              expense.cost
+                .toString()
+                .toLowerCase()
+                .indexOf(action.value.toLowerCase()) != -1
+          ),
       };
     case "UPDATE_BUDGET":
       return {
         ...state,
         budget: action.payload,
       };
+    case "SEARCH_ITEM":
+      return {
+        ...state,
+        searchList: state.expenses.filter(
+          (expense) =>
+            expense.name.toLowerCase().indexOf(action.payload.toLowerCase()) !=
+              -1 ||
+            expense.cost
+              .toString()
+              .toLowerCase()
+              .indexOf(action.payload.toLowerCase()) != -1
+        ),
+      };
     default:
       return state;
   }
 };
-
+// item["name"].toLowerCase().indexOf(query.toLowerCase()) != -1 || toString(item["cost"]).toLowerCase().indexOf(query.toLowerCase()) != -1;
 const initialState = {
   budget: 200000,
   expenses: [
@@ -31,6 +55,7 @@ const initialState = {
     { id: 13, name: "holiday", cost: 4000 },
     { id: 14, name: "car service", cost: 4500 },
   ],
+  searchList: [],
 };
 
 export const AppContext = createContext();
@@ -43,6 +68,7 @@ export const AppProvider = (props) => {
       value={{
         budget: state.budget,
         expenses: state.expenses,
+        searchList: state.searchList,
         dispatch,
       }}
     >

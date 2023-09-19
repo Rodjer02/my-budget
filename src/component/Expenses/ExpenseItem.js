@@ -3,12 +3,13 @@ import { TiDelete } from "react-icons/ti";
 import { AppContext } from "../../context/AppContext";
 
 export default function ExpenseItem(props) {
-  const { dispatch } = useContext(AppContext);
+  const { dispatch, expenses } = useContext(AppContext);
 
   const handleDeleteExpense = () => {
     dispatch({
       type: "DELETE_EXPENSE",
       payload: props.id,
+      value: props.value,
     });
   };
 
