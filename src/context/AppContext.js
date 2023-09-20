@@ -47,7 +47,6 @@ const AppReducer = (state, action, value) => {
       return state;
   }
 };
-// item["name"].toLowerCase().indexOf(query.toLowerCase()) != -1 || toString(item["cost"]).toLowerCase().indexOf(query.toLowerCase()) != -1;
 const initialState = {
   budget: 200000,
   expenses: [
